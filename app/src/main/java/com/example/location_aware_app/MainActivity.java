@@ -29,8 +29,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        geocoder = new Geocoder(this);
-
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         TextView lat = findViewById(R.id.lat);
         TextView longitude = findViewById(R.id.myLong);
@@ -86,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String getAddress(double lat, double longitude) throws IOException {
+        geocoder = new Geocoder(this);
         List<Address> addresses = geocoder.getFromLocation(lat, longitude, 1);
         String address = addresses.get(0).getAddressLine(0);
         String city = addresses.get(0).getLocality();
